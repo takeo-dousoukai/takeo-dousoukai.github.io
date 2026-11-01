@@ -13,6 +13,7 @@ let lastTotal = null;
 loadStats();
 applyPayConfig();
 applySurveyNotice();
+applyFinalForm();
 bindFormUx();
 bindFloatingCta();
 
@@ -274,4 +275,17 @@ function clearStatus() {
 }
 function escapeHtml(v) {
   return String(v ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+}
+
+// ---------- 最終出欠確認を Googleフォームで受ける（config.js の finalFormUrl） ----------
+function applyFinalForm() {
+  const url = APP_CONFIG.finalFormUrl;
+  if (!url) return;
+  document.querySelectorAll('a[href="#rsvp"]').forEach((a) => {
+    a.href = url; a.target = "_blank"; a.rel = "noopener";
+  });
+  document.getElementById("surveyCard").hidden = true;
+  const box = document.getElementById("finalFormBox");
+  box.querySelector("a").href = url;
+  box.hidden = false;
 }

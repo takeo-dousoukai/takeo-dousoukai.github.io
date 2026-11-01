@@ -334,3 +334,6 @@ textarea.input { resize: vertical; }
 }
 
 [hidden] { display: none !important; }
+
+.final-form { padding: 16px 0 4px; }
+.final-form p:first-child { margin: 0 0 14px; }

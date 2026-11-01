@@ -18,6 +18,8 @@ const APP_CONFIG = {
   surveyDeadlineAt: "2026-11-15T23:59:00+09:00",
   // アンケート以外ですでに参加を伝えてくれている人数（トップの人数に足して表示）
   preAttendees: 10,
+  // 最終出欠確認の Googleフォーム（回答用URL）。入れるとサイト内フォームの代わりにこちらへ案内する
+  finalFormUrl: "",
 };
 
 /** バックエンド（Apps Script）が接続済みかどうか */
