@@ -40,7 +40,7 @@ function renderCounter(surveyTotal, pending, byClass) {
   lastTotal = total;
   countUp(document.getElementById("cntTotal"), total);
   document.getElementById("cntSub").textContent =
-    [pre ? `事前に参加を伝えてくれた${pre}名を含む` : "", pending > 0 ? `ほか日程次第 ${pending}名` : ""].filter(Boolean).join("／") || "回答するとここに反映されます";
+    [pre ? `事前に参加を伝えてくれた${pre}名を含む` : "", pending > 0 ? `ほか検討中 ${pending}名` : ""].filter(Boolean).join("／") || "回答するとここに反映されます";
 
   const classes = ["1", "2", "3", "4", "5", "6", "7"];
   const max = Math.max(1, ...classes.map((c) => byClass[c] || 0));
@@ -226,7 +226,7 @@ function hasContact(fd) {
 function showThanks(data, isDemo) {
   const msg = {
     "参加": "会費が決まったら事前入金のご案内をします。入金を確認できた方から、参加者のLINEグループに招待します。",
-    "未定": "日程が決まったらすぐにお知らせします。",
+    "未定": "予定がはっきりしたら、もう一度回答してください。",
     "不参加": "教えてくれてありがとう。また次の機会に。",
   }[data.attendance] || "";
   document.getElementById("thanksMsg").textContent = msg;

@@ -83,6 +83,17 @@ a { color: inherit; }
 }
 .hero__note { margin: 10px 0 0; font-size: .76rem; color: var(--muted); }
 
+/* 開催決定 */
+.decided {
+  margin: 0 0 16px; padding: 10px 12px;
+  border: 1px solid var(--shu); color: var(--ink);
+  font-family: var(--mincho); font-weight: 700; font-size: .98rem; line-height: 1.5;
+}
+.decided span {
+  display: inline-block; margin-right: 10px; padding: 1px 6px;
+  background: var(--shu); color: #fff; font-size: .74rem; vertical-align: 2px;
+}
+
 /* 参加人数 */
 .count {
   border-top: 1px solid var(--rule-strong); border-bottom: 1px solid var(--rule);
