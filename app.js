@@ -39,6 +39,7 @@ function renderCounter(surveyTotal, pending, byClass) {
   const pre = Number(APP_CONFIG.preAttendees) || 0;
   const total = surveyTotal + pre;
   lastTotal = total;
+  if (!document.getElementById("cntTotal")) return;
   countUp(document.getElementById("cntTotal"), total);
   document.getElementById("cntSub").textContent =
     [pre ? `事前に参加を伝えてくれた${pre}名を含む` : "", pending > 0 ? `ほか検討中 ${pending}名` : ""].filter(Boolean).join("／") || "回答するとここに反映されます";
@@ -74,7 +75,7 @@ function countUp(el, to) {
 
 // ---------- 〆切バッジ・カウントダウン ----------
 function applySurveyNotice() {
-  if (!APP_CONFIG.surveyDeadline) return;
+  if (!APP_CONFIG.surveyDeadline || !document.getElementById("surveyNotice")) return;
   document.getElementById("surveyDeadlineLabel").textContent = APP_CONFIG.surveyDeadline;
   const cd = document.getElementById("surveyCountdown");
   const deadline = APP_CONFIG.surveyDeadlineAt ? new Date(APP_CONFIG.surveyDeadlineAt) : null;
@@ -89,12 +90,13 @@ function applySurveyNotice() {
 
 // ---------- 会費・PayPayリンク ----------
 function applyPayConfig() {
+  if (!document.getElementById("feeValue")) return;
   if (APP_CONFIG.fee) {
     document.getElementById("feeValue").textContent = APP_CONFIG.fee;
     document.getElementById("feeNote").textContent = "事前にPayPayでお支払いください";
   }
   if (APP_CONFIG.payPayLink) {
-    document.getElementById("payLinkArea").innerHTML =
+    if (document.getElementById("payLinkArea")) document.getElementById("payLinkArea").innerHTML =
       `<a class="paylink" href="${encodeURI(APP_CONFIG.payPayLink)}" target="_blank" rel="noopener">PayPayで送金する</a>` +
       (APP_CONFIG.fee ? `（${escapeHtml(APP_CONFIG.fee)}）` : "");
   }
@@ -187,7 +189,7 @@ async function deliver(data, note) {
     state.className = "save-state is-saved";
     state.textContent = (note || "記録しました。この画面は閉じて大丈夫です。") +
       (res.matched === false ? "（名簿の確認は幹事が行います）" : "");
-    loadStats().then(() => { document.getElementById("thanksCount").textContent = lastTotal ?? "–"; });
+    loadStats().then(() => { (document.getElementById("thanksCount") || {}).textContent = lastTotal ?? "–"; });
   } catch (err) {
     console.error(err);
     state.className = "save-state is-error";
@@ -205,7 +207,7 @@ async function deliver(data, note) {
 function bumpCounter(data) {
   if (data.attendance !== "参加" || lastTotal == null) return;
   lastTotal += 1;
-  document.getElementById("cntTotal").textContent = lastTotal;
+  (document.getElementById("cntTotal") || {}).textContent = lastTotal;
 }
 
 // 前回届いていなかった回答があれば送り直す
@@ -235,7 +237,7 @@ function showThanks(data, isDemo) {
   state.className = "save-state";
   state.textContent = isDemo ? "【テストモード】保存はされていません。" : "記録しています…（この画面は閉じても大丈夫です）";
   document.getElementById("retryBtn").hidden = true;
-  document.getElementById("thanksCount").textContent = lastTotal ?? "–";
+  (document.getElementById("thanksCount") || {}).textContent = lastTotal ?? "–";
 
   const url = location.href.split("#")[0];
   const text = `武雄高校（H27年3月卒）の同窓会の参加アンケートです。1分で答えられます。\n${APP_CONFIG.surveyDeadline ? `〆切：${APP_CONFIG.surveyDeadline}\n` : ""}${url}`;
@@ -253,6 +255,7 @@ function showThanks(data, isDemo) {
 // ---------- 下部固定CTA ----------
 function bindFloatingCta() {
   const cta = document.getElementById("floatingCta");
+  if (!cta) return;
   const hero = document.querySelector(".hero");
   const survey = document.getElementById("rsvp");
   let heroVisible = true, surveyVisible = false;

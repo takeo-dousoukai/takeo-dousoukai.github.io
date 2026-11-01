@@ -337,3 +337,9 @@ textarea.input { resize: vertical; }
 
 .final-form { padding: 16px 0 4px; }
 .final-form p:first-child { margin: 0 0 14px; }
+
+/* 信頼感のための補助 */
+.facts--hero { margin: 0 0 20px; border-top: 1px solid var(--rule-strong); }
+.facts--hero > div { grid-template-columns: 3em 1fr; padding: 10px 0; }
+.facts--hero dd { font-weight: 700; }
+.note-box { margin: 0 0 16px; padding: 10px 12px; border-left: 3px solid var(--ink); background: rgba(0,0,0,.03); }
