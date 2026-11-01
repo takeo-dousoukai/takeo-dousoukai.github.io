@@ -354,3 +354,11 @@ textarea.input { resize: vertical; }
   margin: 0 0 18px; font-family: var(--mincho); font-weight: 700;
   font-size: 1.3rem; line-height: 1.7;
 }
+
+.ask-box {
+  margin: 20px 0 12px; padding: 14px 16px;
+  border: 2px solid var(--shu); background: #fff8f4;
+}
+.ask-box p { margin: 0 0 8px; }
+.ask-box p:last-child { margin-bottom: 0; }
+.ask-box__title { font-family: var(--mincho); font-weight: 700; font-size: 1.08rem; color: var(--shu); }
