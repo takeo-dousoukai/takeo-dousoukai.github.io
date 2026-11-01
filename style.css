@@ -343,3 +343,14 @@ textarea.input { resize: vertical; }
 .facts--hero > div { grid-template-columns: 3em 1fr; padding: 10px 0; }
 .facts--hero dd { font-weight: 700; }
 .note-box { margin: 0 0 16px; padding: 10px 12px; border-left: 3px solid var(--ink); background: rgba(0,0,0,.03); }
+
+/* 先生方のお招きを目立たせる */
+.hero__teachers {
+  margin: -6px 0 20px; padding: 10px 14px;
+  border: 1px solid var(--shu); color: var(--shu);
+  font-family: var(--mincho); font-weight: 700; font-size: 1.12rem; line-height: 1.6;
+}
+.teachers-lead {
+  margin: 0 0 18px; font-family: var(--mincho); font-weight: 700;
+  font-size: 1.3rem; line-height: 1.7;
+}
