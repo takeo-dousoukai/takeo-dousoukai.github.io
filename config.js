@@ -19,7 +19,7 @@ const APP_CONFIG = {
   // アンケート以外ですでに参加を伝えてくれている人数（トップの人数に足して表示）
   preAttendees: 10,
   // 最終出欠確認の Googleフォーム（回答用URL）。入れるとサイト内フォームの代わりにこちらへ案内する
-  finalFormUrl: "",
+  finalFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLScAGludj98XRnHtKxCbfBTgkbcE4ELmuhakwKZGj4mCYsoQDA/viewform",
 };
 
 /** バックエンド（Apps Script）が接続済みかどうか */
